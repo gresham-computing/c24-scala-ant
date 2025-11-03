@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.gresham.ant</groupId>
+    <artifactId>scala-ant</artifactId>
+    <packaging>jar</packaging>
+    <name>ANT for Scala</name>
+    <version>1.0.0-SNAPSHOT</version>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>2.13.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>2.13.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.13.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.16</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>nexus-snapshot</id>
+            <name>Gresham Maven Snapshot Repository</name>
+            <url>https://nexus.greshamtech.com/repository/gresham-maven-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>nexus</id>
+            <layout>default</layout>
+            <name>Gresham Nexus</name>
+            <url>https://nexus.greshamtech.com/repository/maven-group/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Gresham Maven Repository</name>
+            <url>https://nexus.greshamtech.com/repository/gresham-maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>nexus-snapshot</id>
+            <name>Gresham Maven Snapshot Repository</name>
+            <url>https://nexus.greshamtech.com/repository/gresham-maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>4.7.2</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                    </execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>doc-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!--                 <executions>
+                                   <execution>
+                                       <goals>
+                                           <goal>compile</goal>
+                                           <goal>testCompile</goal>
+                                       </goals>
+                                   </execution>
+                               </executions>
+                   -->           <configuration>
+                <!--             <sourceDir>src/main/scala</sourceDir-->
+                <recompileMode>incremental</recompileMode>
+                <args>
+                    <arg>-target:jvm-1.8</arg>
+                    <arg>-language:postfixOps</arg>
+                    <arg>-nobootcp</arg>
+                </args>
+                <javacArgs>
+                    <javacArg>-source</javacArg><javacArg>1.8</javacArg>
+                    <javacArg>-target</javacArg><javacArg>1.8</javacArg>
+                </javacArgs>
+
+                <jvmArgs>
+                    <jvmArg>-Xms64m</jvmArg>
+                    <jvmArg>-Xmx1024m</jvmArg>
+                </jvmArgs>
+            </configuration>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.scalastyle</groupId>-->
+<!--                <artifactId>scalastyle-maven-plugin</artifactId>-->
+<!--                <version>0.4.0</version>-->
+<!--                <configuration>-->
+<!--                    <verbose>false</verbose>-->
+<!--                    <failOnViolation>true</failOnViolation>-->
+<!--                    <includeTestSourceDirectory>true</includeTestSourceDirectory>-->
+<!--                    <failOnWarning>false</failOnWarning>-->
+<!--                    <sourceDirectory>${basedir}/src/main/scala</sourceDirectory>-->
+<!--                    <testSourceDirectory>${basedir}/src/test/scala</testSourceDirectory>-->
+<!--                    <configLocation>${basedir}/lib/scalastyle_config.xml</configLocation>-->
+<!--                    <outputFile>${project.build.directory}/scalastyle-output.xml</outputFile>-->
+<!--                    <outputEncoding>UTF-8</outputEncoding>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+        </plugins>
+    </build>
+
+</project>
