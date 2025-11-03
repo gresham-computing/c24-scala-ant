@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
-            <version>1.9.16</version>
+            <version>1.10.14</version>
         </dependency>
     </dependencies>
 
@@ -89,56 +89,24 @@
                         </goals>
                     </execution>
                 </executions>
-                <!--                 <executions>
-                                   <execution>
-                                       <goals>
-                                           <goal>compile</goal>
-                                           <goal>testCompile</goal>
-                                       </goals>
-                                   </execution>
-                               </executions>
-                   -->           <configuration>
-                <!--             <sourceDir>src/main/scala</sourceDir-->
-                <recompileMode>incremental</recompileMode>
-                <args>
-                    <arg>-target:jvm-1.8</arg>
-                    <arg>-language:postfixOps</arg>
-                    <arg>-nobootcp</arg>
-                </args>
-                <javacArgs>
-                    <javacArg>-source</javacArg><javacArg>1.8</javacArg>
-                    <javacArg>-target</javacArg><javacArg>1.8</javacArg>
-                </javacArgs>
+                <configuration>
+                    <recompileMode>incremental</recompileMode>
+                    <args>
+                        <arg>-target:jvm-1.8</arg>
+                        <arg>-language:postfixOps</arg>
+                        <arg>-nobootcp</arg>
+                    </args>
+                    <javacArgs>
+                        <javacArg>-source</javacArg><javacArg>1.8</javacArg>
+                        <javacArg>-target</javacArg><javacArg>1.8</javacArg>
+                    </javacArgs>
 
-                <jvmArgs>
-                    <jvmArg>-Xms64m</jvmArg>
-                    <jvmArg>-Xmx1024m</jvmArg>
-                </jvmArgs>
-            </configuration>
+                    <jvmArgs>
+                        <jvmArg>-Xms64m</jvmArg>
+                        <jvmArg>-Xmx1024m</jvmArg>
+                    </jvmArgs>
+                </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.scalastyle</groupId>-->
-<!--                <artifactId>scalastyle-maven-plugin</artifactId>-->
-<!--                <version>0.4.0</version>-->
-<!--                <configuration>-->
-<!--                    <verbose>false</verbose>-->
-<!--                    <failOnViolation>true</failOnViolation>-->
-<!--                    <includeTestSourceDirectory>true</includeTestSourceDirectory>-->
-<!--                    <failOnWarning>false</failOnWarning>-->
-<!--                    <sourceDirectory>${basedir}/src/main/scala</sourceDirectory>-->
-<!--                    <testSourceDirectory>${basedir}/src/test/scala</testSourceDirectory>-->
-<!--                    <configLocation>${basedir}/lib/scalastyle_config.xml</configLocation>-->
-<!--                    <outputFile>${project.build.directory}/scalastyle-output.xml</outputFile>-->
-<!--                    <outputEncoding>UTF-8</outputEncoding>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>check</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 
