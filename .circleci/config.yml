@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  KDT-UPLOAD:
+    default: true
+    type: boolean
+
 orbs:
   maven: circleci/maven@1.0.2
   gresham-orb: gresham-computing/gresham-orb@5.3.0
@@ -67,7 +72,7 @@ commands:
           nexusIQApp: "Misc"
           nexusIQStage: "Release"
           nexusIQArtifactLocation: "c24-ctc-streamtransformerplugin-dependencies.zip"
-          kondukto: true
+          kondukto: << pipeline.parameters.KDT-UPLOAD >>
           konduktoProject: "c24-ctc-streamtransformerplugin"
           konduktoBranch: ${CIRCLE_BRANCH}
   cleanup:
@@ -78,14 +83,14 @@ commands:
           key: m2-{{ checksum "pom.xml" }}
       - gresham-orb/whitelist-remove:
           pattern: ${CIRCLE_PROJECT_REPONAME}
-          kondukto: true
+          kondukto: << pipeline.parameters.KDT-UPLOAD >>
   init:
     steps:
       - checkout
       - gresham-orb/get-whitelister
       - gresham-orb/whitelist-add:
           pattern: ${CIRCLE_PROJECT_REPONAME}
-          kondukto: true
+          kondukto: << pipeline.parameters.KDT-UPLOAD >>
       - restore_cache:
           keys:
             - m2-{{ checksum "pom.xml" }}
