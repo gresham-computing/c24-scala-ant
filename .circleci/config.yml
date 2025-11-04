@@ -29,7 +29,7 @@ jobs:
       - cleanup
       - slack/status:
           fail_only: true
-          webhook: https://hooks.slack.com/services/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
+          webhook: ${SLACK_WEB_HOOK}
   normal:
     executor: exe
     steps:
@@ -44,7 +44,7 @@ jobs:
       - cleanup
       - slack/status:
           fail_only: true
-          webhook: https://hooks.slack.com/services/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
+          webhook: ${SLACK_WEB_HOOK}
   release:
     executor: exe
     steps:
@@ -58,7 +58,7 @@ jobs:
       - cleanup
       - slack/status:
           success_message: Successfully released C24 Stream Transformer
-          webhook: https://hooks.slack.com/services/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
+          webhook: ${SLACK_WEB_HOOK}
 
 commands:
   nexus-iq-scan:
